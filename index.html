@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мастер Галина — Колорист · г. Железнодорожный</title>
+<meta name="description" content="Профессиональный колорист Галина Дударь. Окрашивание, балаяж, блондирование в г. Железнодорожный. Запись по WhatsApp.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#c96b82;
+  --pink-light:#fce8f0;
+  --pink-border:#f2c4ce;
+  --dark:#3d2228;
+  --muted:#9c6672;
+  --secondary:#c49aa6;
+  --bg:#fff9f7;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--dark);line-height:1.6}
+a{color:var(--pink);text-decoration:none}
+
+/* NAV */
+nav{background:#fff;border-bottom:0.5px solid var(--pink-border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:17px;font-weight:500;color:var(--dark)}
+.nav-logo span{color:var(--pink)}
+.nav-btn{background:var(--pink);color:#fff;border:none;padding:8px 18px;border-radius:20px;font-size:13px;cursor:pointer;font-weight:500}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#f9e8e8 0%,#fdf3ed 50%,#fce8f0 100%);padding:56px 24px 48px;text-align:center}
+.badge{display:inline-block;background:var(--pink-light);color:#8b3a52;font-size:12px;padding:4px 14px;border-radius:20px;margin-bottom:14px;letter-spacing:0.07em}
+.hero h1{font-size:34px;font-weight:500;color:var(--dark);margin-bottom:6px}
+.hero-sub{font-size:15px;color:var(--muted);margin-bottom:4px}
+.hero-city{font-size:13px;color:var(--secondary);margin-bottom:28px}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--pink);color:#fff;border:none;padding:13px 26px;border-radius:30px;font-size:15px;cursor:pointer;font-weight:500}
+.btn-secondary{background:#fff;color:var(--pink);border:1.5px solid var(--pink);padding:13px 26px;border-radius:30px;font-size:15px;cursor:pointer;font-weight:500}
+
+/* SECTIONS */
+.section{padding:40px 24px;max-width:680px;margin:0 auto}
+.sec-title{font-size:20px;font-weight:500;color:var(--dark);margin-bottom:4px;text-align:center}
+.sec-sub{font-size:13px;color:var(--secondary);text-align:center;margin-bottom:24px}
+.divider{height:0.5px;background:var(--pink-border);margin:0 24px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.srv-card{background:#fff;border:0.5px solid var(--pink-border);border-radius:14px;padding:18px 12px;text-align:center}
+.srv-icon{font-size:28px;margin-bottom:8px}
+.srv-name{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:4px}
+.srv-price{font-size:13px;color:var(--pink);font-weight:500}
+.srv-time{font-size:11px;color:var(--secondary);margin-top:2px}
+
+/* PORTFOLIO */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.photo-slot{background:linear-gradient(135deg,var(--pink-light),#f9e8e8);border-radius:12px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:0.5px solid var(--pink-border);overflow:hidden}
+.photo-slot img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.photo-slot-empty{font-size:24px;color:var(--pink-border)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.tag{background:var(--pink-light);color:#8b3a52;font-size:12px;padding:5px 12px;border-radius:20px}
+
+/* ABOUT */
+.about-card{background:#fff;border:0.5px solid var(--pink-border);border-radius:14px;padding:20px;display:flex;gap:16px;align-items:flex-start}
+.avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--pink-border),#e8a0b4);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#8b3a52}
+.about-text h3{font-size:16px;font-weight:500;color:var(--dark);margin-bottom:6px}
+.about-text p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* BOOKING FORM */
+.form-card{background:#fff;border:0.5px solid var(--pink-border);border-radius:16px;padding:24px}
+.field-label{font-size:12px;color:var(--muted);margin-bottom:5px;display:block}
+.field{width:100%;border:0.5px solid var(--pink-border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--dark);background:#fff;outline:none;margin-bottom:12px;font-family:inherit}
+.field:focus{border-color:var(--pink)}
+select.field{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c49aa6' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.consent-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+.consent-row input{margin-top:3px;accent-color:var(--pink);flex-shrink:0}
+.consent-text{font-size:12px;color:var(--muted);line-height:1.5}
+.consent-text a{color:var(--pink)}
+.submit-btn{width:100%;padding:14px;border-radius:30px;border:none;background:var(--pink);color:#fff;font-size:15px;font-weight:500;cursor:pointer}
+.err{font-size:12px;color:#e24b4a;margin:-8px 0 10px;display:none}
+.success-msg{display:none;text-align:center;padding:20px 0}
+.success-msg .s-icon{font-size:48px;margin-bottom:12px}
+.success-msg h3{font-size:17px;font-weight:500;color:var(--dark);margin-bottom:6px}
+.success-msg p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.wa-link{display:inline-block;background:#25d366;color:#fff;padding:12px 28px;border-radius:30px;font-size:14px;font-weight:500}
+
+/* CONTACTS */
+.contacts{display:flex;flex-direction:column;gap:10px}
+.contact-row{display:flex;align-items:center;gap:14px;background:#fff;border:0.5px solid var(--pink-border);border-radius:14px;padding:14px 18px}
+.c-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.c-label{font-size:12px;color:var(--secondary)}
+.c-value{font-size:14px;font-weight:500;color:var(--dark)}
+
+/* PRIVACY MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;overflow-y:auto}
+.modal{background:#fff;border-radius:16px;max-width:600px;margin:40px auto;padding:32px 24px;position:relative}
+.modal h2{font-size:18px;font-weight:500;color:var(--dark);margin-bottom:16px}
+.modal h3{font-size:15px;font-weight:500;color:var(--dark);margin:16px 0 6px}
+.modal p,.modal li{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:6px}
+.modal ul{padding-left:18px;margin-bottom:8px}
+.modal-close{position:absolute;top:16px;right:20px;font-size:22px;cursor:pointer;color:var(--secondary);background:none;border:none}
+
+/* FOOTER */
+footer{background:var(--pink-light);border-top:0.5px solid var(--pink-border);padding:24px;text-align:center}
+footer p{font-size:12px;color:var(--secondary);line-height:1.8}
+footer a{color:var(--pink);font-size:12px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Мастер <span>Галина</span></div>
+  <button class="nav-btn" onclick="scrollToForm()">Записаться</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">✦ Профессиональный колорист</div>
+  <h1>Мастер Галина</h1>
+  <div class="hero-sub">Окрашивание и уход за волосами</div>
+  <div class="hero-city">📍 г. Железнодорожный</div>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="scrollToForm()">Записаться</button>
+    <button class="btn-secondary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Мои работы</button>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+  <div class="sec-title">Услуги и цены</div>
+  <div class="sec-sub">Точная стоимость — на бесплатной консультации</div>
+  <div class="services-grid">
+    <div class="srv-card"><div class="srv-icon">🎨</div><div class="srv-name">Окрашивание</div><div class="srv-price">от 2 000 ₽</div><div class="srv-time">от 2 часов</div></div>
+    <div class="srv-card"><div class="srv-icon">✨</div><div class="srv-name">Блондирование</div><div class="srv-price">от 4 000 ₽</div><div class="srv-time">от 3 часов</div></div>
+    <div class="srv-card"><div class="srv-icon">🌟</div><div class="srv-name">Мелирование</div><div class="srv-price">от 3 000 ₽</div><div class="srv-time">от 2 часов</div></div>
+    <div class="srv-card"><div class="srv-icon">💆</div><div class="srv-name">Тонирование</div><div class="srv-price">от 1 000 ₽</div><div class="srv-time">от 1 часа</div></div>
+    <div class="srv-card"><div class="srv-icon">💎</div><div class="srv-name">Реконструкция</div><div class="srv-price">от 3 000 ₽</div><div class="srv-time">от 2 часов</div></div>
+    <div class="srv-card"><div class="srv-icon">🪄</div><div class="srv-name">Осветление</div><div class="srv-price">от 3 500 ₽</div><div class="srv-time">от 2 часов</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<div class="section" id="portfolio">
+  <div class="sec-title">Портфолио</div>
+  <div class="sec-sub">Загрузите свои фотографии работ — замените src в коде</div>
+  <div class="photo-grid">
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+    <div class="photo-slot"><div class="photo-slot-empty">📸</div></div>
+  </div>
+  <div class="tags">
+    <div class="tag">Мелирование</div>
+    <div class="tag">Омбре</div>
+    <div class="tag">Шатуш</div>
+    <div class="tag">Airtouch</div>
+    <div class="tag">Осветление</div>
+    <div class="tag">Тонирование</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="sec-title">О мастере</div>
+  <div class="sec-sub" style="margin-bottom:16px">Профессионал с любовью к своему делу</div>
+  <div class="about-card">
+    <div class="avatar">Г</div>
+    <div class="about-text">
+      <h3>Галина Дударь — мастер-колорист</h3>
+      <p>Специализируюсь на сложном окрашивании и осветлении. Работаю с профессиональной косметикой. Подбираю технику под тип волос и желаемый результат. Консультация бесплатно — звоните или пишите в WhatsApp.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BOOKING FORM -->
+<div class="section" id="booking">
+  <div class="sec-title">Записаться</div>
+  <div class="sec-sub" style="margin-bottom:16px">Оставьте заявку — Галина свяжется с вами в WhatsApp</div>
+  <div class="form-card">
+    <div id="form-body">
+      <label class="field-label">Ваше имя *</label>
+      <input class="field" id="f-name" type="text" placeholder="Как вас зовут?">
+      <div class="err" id="err-name">Введите ваше имя</div>
+
+      <label class="field-label">Номер телефона *</label>
+      <input class="field" id="f-phone" type="tel" placeholder="+7 (___) ___-__-__">
+      <div class="err" id="err-phone">Введите номер телефона</div>
+
+      <label class="field-label">Услуга *</label>
+      <select class="field" id="f-service">
+        <option value="">Выберите услугу...</option>
+        <option>Окрашивание — от 2 000 ₽</option>
+        <option>Блондирование — от 4 000 ₽</option>
+        <option>Мелирование — от 3 000 ₽</option>
+        <option>Тонирование — от 1 000 ₽</option>
+        <option>Реконструкция — от 3 000 ₽</option>
+        <option>Осветление — от 3 500 ₽</option>
+        <option>Консультация (бесплатно)</option>
+      </select>
+      <div class="err" id="err-service">Выберите услугу</div>
+
+      <label class="field-label">Удобное время</label>
+      <input class="field" id="f-date" type="text" placeholder="Например: пятница после 15:00">
+
+      <label class="field-label">Комментарий</label>
+      <textarea class="field" id="f-comment" rows="2" placeholder="Пожелания, длина волос, текущий цвет..."></textarea>
+
+      <div class="consent-row">
+        <input type="checkbox" id="f-consent">
+        <div class="consent-text">
+          Я согласен(а) на обработку персональных данных в соответствии с
+          <a href="#" onclick="showPrivacy();return false;">Политикой конфиденциальности</a>
+          (ФЗ-152 «О персональных данных»)
+        </div>
+      </div>
+      <div class="err" id="err-consent">Необходимо согласие на обработку данных</div>
+
+      <button class="submit-btn" onclick="submitForm()">Отправить заявку в WhatsApp</button>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="s-icon">🌸</div>
+      <h3>Заявка готова!</h3>
+      <p>Нажмите кнопку ниже — откроется WhatsApp с готовым сообщением для Галины</p>
+      <a class="wa-link" id="wa-link" href="#" target="_blank">Открыть WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACTS -->
+<div class="section">
+  <div class="sec-title">Контакты</div>
+  <div class="sec-sub" style="margin-bottom:16px">г. Железнодорожный</div>
+  <div class="contacts">
+    <a class="contact-row" href="https://wa.me/79171884792" target="_blank" style="text-decoration:none">
+      <div class="c-icon" style="background:#e8f5e9">💬</div>
+      <div>
+        <div class="c-label">WhatsApp</div>
+        <div class="c-value">+7 (917) 188-47-92</div>
+      </div>
+    </a>
+    <a class="contact-row" href="https://vk.me/79171884792" target="_blank" style="text-decoration:none">
+      <div class="c-icon" style="background:#e3f2fd">💙</div>
+      <div>
+        <div class="c-label">MAX (VK)</div>
+        <div class="c-value">+7 (917) 188-47-92</div>
+      </div>
+    </a>
+    <div class="contact-row">
+      <div class="c-icon" style="background:var(--pink-light)">📍</div>
+      <div>
+        <div class="c-label">Город</div>
+        <div class="c-value">г. Железнодорожный, Московская область</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Самозанятая · Дударь Галина Георгиевна · ИНН 301508610790</p>
+  <p>г. Железнодорожный, Московская область</p>
+  <p style="margin-top:6px"><a href="#" onclick="showPrivacy();return false;">Политика конфиденциальности</a></p>
+  <p style="margin-top:8px">© 2026 Мастер Галина. Все права защищены.</p>
+</footer>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="privacy-modal" onclick="if(event.target===this)closePrivacy()">
+  <div class="modal">
+    <button class="modal-close" onclick="closePrivacy()">✕</button>
+    <h2>Политика конфиденциальности</h2>
+    <p>Настоящая политика определяет порядок обработки персональных данных в соответствии с Федеральным законом № 152-ФЗ «О персональных данных».</p>
+
+    <h3>Оператор данных</h3>
+    <p>Самозанятая Дударь Галина Георгиевна, ИНН 301508610790, г. Железнодорожный, Московская область. Телефон: +7 (917) 188-47-92.</p>
+
+    <h3>Какие данные собираются</h3>
+    <ul>
+      <li>Имя и фамилия</li>
+      <li>Номер телефона</li>
+      <li>Информация о запрашиваемой услуге</li>
+      <li>Пожелания по времени записи</li>
+    </ul>
+
+    <h3>Цели обработки</h3>
+    <p>Данные используются исключительно для связи с клиентом и организации записи на услуги. Данные передаются через мессенджер WhatsApp и не хранятся на серверах сайта.</p>
+
+    <h3>Права субъекта данных</h3>
+    <p>Вы вправе в любое время отозвать согласие на обработку данных, направив сообщение по телефону +7 (917) 188-47-92.</p>
+
+    <h3>Хранение данных</h3>
+    <p>Персональные данные хранятся только в переписке мессенджера и не передаются третьим лицам.</p>
+
+    <h3>Контакт</h3>
+    <p>По вопросам обработки данных: +7 (917) 188-47-92 (WhatsApp).</p>
+
+    <p style="margin-top:16px;font-size:11px;color:var(--secondary)">Дата последнего обновления: январь 2026 г.</p>
+  </div>
+</div>
+
+<script>
+function scrollToForm(){document.getElementById('booking').scrollIntoView({behavior:'smooth'})}
+
+function showPrivacy(){document.getElementById('privacy-modal').style.display='block';document.body.style.overflow='hidden'}
+function closePrivacy(){document.getElementById('privacy-modal').style.display='none';document.body.style.overflow=''}
+
+function submitForm(){
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var service=document.getElementById('f-service').value;
+  var date=document.getElementById('f-date').value.trim();
+  var comment=document.getElementById('f-comment').value.trim();
+  var consent=document.getElementById('f-consent').checked;
+  var ok=true;
+
+  function show(id,v){document.getElementById(id).style.display=v?'block':'none'}
+  show('err-name',!name);if(!name)ok=false;
+  show('err-phone',!phone);if(!phone)ok=false;
+  show('err-service',!service);if(!service)ok=false;
+  show('err-consent',!consent);if(!consent)ok=false;
+  if(!ok)return;
+
+  var msg='Здравствуйте, Галина! Хочу записаться.\n'
+    +'Имя: '+name+'\n'
+    +'Телефон: '+phone+'\n'
+    +'Услуга: '+service
+    +(date?'\nУдобное время: '+date:'')
+    +(comment?'\nКомментарий: '+comment:'');
+
+  var link='https://wa.me/79171884792?text='+encodeURIComponent(msg);
+  document.getElementById('wa-link').href=link;
+  document.getElementById('form-body').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+  window.open(link,'_blank');
+}
+</script>
+</body>
+</html>
