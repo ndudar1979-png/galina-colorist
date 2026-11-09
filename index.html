@@ -38,6 +38,20 @@
 .privacy-section ul{padding-left:21px}
 .privacy-section .draft-note{font-size:12px;color:#925d4a}
 .footer-privacy{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+/* Диалог согласия на аналитические cookies */
+.cookie-overlay[hidden],.cookie-banner[hidden]{display:none!important}
+.cookie-overlay{position:fixed;inset:0;background:rgba(23,16,20,.62);z-index:9998}
+.cookie-banner{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;width:min(460px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;background:#fffdfb;border:1px solid var(--line);border-radius:20px;box-shadow:0 22px 75px rgba(25,15,20,.24);padding:28px;color:var(--ink)}
+.cookie-banner strong{display:block;font:normal 28px/1.16 Georgia,serif;margin-bottom:12px}
+.cookie-banner p{margin:0 0 22px;font-size:14px;line-height:1.6;color:#65585a}
+.cookie-banner p a{color:#85464f;text-decoration:underline;text-underline-offset:2px}
+.cookie-actions{display:flex;gap:10px}
+.cookie-actions button{flex:1;min-height:46px;padding:10px 12px;border:1px solid var(--accent);border-radius:11px;color:white;background:var(--accent);font:600 15px/1.2 system-ui,sans-serif;cursor:pointer}
+.cookie-actions button.secondary{background:transparent;color:var(--ink);border-color:#ccb7b8}
+.cookie-actions button:focus-visible,.cookie-settings:focus-visible{outline:3px solid #bf9098;outline-offset:3px}
+.cookie-settings{border:0;background:none;padding:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit}
+@media(max-width:440px){.cookie-banner{padding:22px}.cookie-banner strong{font-size:24px}.cookie-actions{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -78,14 +92,15 @@
       <h3>7. Аналитика и cookie</h3>
       <p>Для анализа посещаемости сайта и улучшения работы страниц используется сервис «Яндекс Метрика» (счётчик № 114138568), предоставляемый Яндексом. Счётчик загружается только после согласия посетителя на аналитические cookie. Если посетитель откажется, код Метрики не загружается.</p>
        <p>После согласия могут обрабатываться технические данные о посещении: IP-адрес, сведения об устройстве и браузере, посещённые страницы, источник перехода, время посещения, cookie и идентификаторы, а также клики по ссылкам, включая кнопки перехода в мессенджеры. Сайт передаёт событие клика, но не содержание переписки в мессенджере. При согласии информация передаётся сервису Яндекс Метрики; применяются также <a href="https://yandex.ru/legal/metrica_termsofuse/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">условия Яндекс Метрики</a>.</p>
-       <p>Вы можете отклонить аналитические cookie или изменить выбор в любое время через ссылку «Настройки cookies» внизу сайта. При отзыве согласия счётчик прекращает загружаться при последующих посещениях; уже сохранённые аналитические данные обрабатываются по применимым правилам сервиса. Сроки хранения и дополнительные сведения об обработке необходимо уточнить по действующим настройкам сервиса и в окончательной редакции политики.</p>
+       <p>При каждом открытии сайта вы можете принять или отклонить аналитические cookie, а также изменить выбор через ссылку «Настройки cookies» внизу сайта. При отзыве согласия счётчик прекращает загружаться при последующих посещениях; уже сохранённые аналитические данные обрабатываются по применимым правилам сервиса. Сроки хранения и дополнительные сведения об обработке необходимо уточнить по действующим настройкам сервиса и в окончательной редакции политики.</p>
     </details>
   </div>
 </section>
 </main>
 <footer class="foot"><div class="wrap"><span>© <span id="year">2026</span> Галина · Мастер-колорист</span><span>Железнодорожный · ул. Пионерская, 2А · <a class="footer-privacy" href="#privacy">Персональные данные</a> · <button class="cookie-settings" id="cookie-settings" type="button">Настройки cookies</button></span></div></footer>
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Настройки аналитических cookies" aria-modal="false" hidden>
-  <strong>Аналитические cookies</strong>
+<div class="cookie-overlay" id="cookie-overlay" hidden></div>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Настройки аналитических cookies" aria-modal="true" aria-labelledby="cookie-title" hidden>
+  <strong id="cookie-title">Использование cookies</strong>
   <p>С вашего согласия мы используем Яндекс Метрику, чтобы оценивать посещения сайта и переходы к записи. Без согласия аналитика не запускается. Подробнее — в <a href="#privacy" id="cookie-policy">политике обработки персональных данных</a>.</p>
   <div class="cookie-actions"><button type="button" id="cookie-accept">Принять</button><button type="button" class="secondary" id="cookie-reject">Отклонить</button></div>
 </div>
@@ -93,10 +108,11 @@
 (function () {
   'use strict';
   document.getElementById('year').textContent = new Date().getFullYear();
-  var consentKey = 'galina_analytics_consent_v1';
   var banner = document.getElementById('cookie-banner');
+  var overlay = document.getElementById('cookie-overlay');
   var consent = null;
-  try { consent = localStorage.getItem(consentKey); } catch (_) {}
+  function showConsent(){ banner.hidden=false; overlay.hidden=false; document.getElementById('cookie-accept').focus(); }
+  function hideConsent(){ banner.hidden=true; overlay.hidden=true; }
 
   function startAnalytics() {
     if (window.__galinaMetrikaStarted) return;
@@ -106,22 +122,21 @@
       m[i].l=1*new Date();
       for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
       k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
-    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=114138568','ym');
     ym(114138568,'init',{ssr:true,clickmap:true,trackLinks:true,accurateTrackBounce:true});
   }
 
   function updateConsent(value) {
     var wasAccepted = consent === 'accepted';
     consent = value;
-    try { localStorage.setItem(consentKey, value); } catch (_) {}
-    banner.hidden = true;
+    hideConsent();
     if (value === 'accepted') startAnalytics();
     if (value === 'rejected' && wasAccepted) location.reload();
   }
 
   document.getElementById('cookie-accept').addEventListener('click',function(){updateConsent('accepted');});
   document.getElementById('cookie-reject').addEventListener('click',function(){updateConsent('rejected');});
-  document.getElementById('cookie-settings').addEventListener('click',function(){banner.hidden=false;});
+  document.getElementById('cookie-settings').addEventListener('click',showConsent);
   document.getElementById('cookie-policy').addEventListener('click',function(){document.querySelector('#privacy details').open=true;});
 
   document.addEventListener('click',function(event){
@@ -135,8 +150,9 @@
     if(goal) window.ym(114138568,'reachGoal',goal);
   });
 
-  if(consent==='accepted') startAnalytics();
-  else if(consent!=='rejected') banner.hidden=false;
+  // По запросу владельца выбор запрашивается при КАЖДОЙ загрузке страницы.
+  // До нового нажатия «Принять» аналитика не запускается.
+  showConsent();
 })();
 </script>
 </body></html>
